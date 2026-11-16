@@ -242,3 +242,49 @@ nav a:hover,nav a[aria-current=page],.brand {color:#394B35;}
 .method-node h3 { margin:0 0 5px;color:#394B35;font-size:clamp(12px,1.65vw,17px);line-height:1.3; }.method-node p { margin:0;font-size:clamp(10px,1.25vw,13px);line-height:1.4;color:#594e43; }.method-node>span { color:#BB7659;font-size:19px;font-weight:700; }
 .method-node--top { top:0;left:33%; }.method-node--right { top:34%;right:0; }.method-node--bottom { bottom:0;left:33%; }.method-node--left { top:34%;left:0; }
 @media(max-width:680px) { .method-cycle { aspect-ratio:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px; }.method-arrows { display:none; }.method-center,.method-node { position:static;transform:none;width:auto;min-height:0; }.method-center { grid-column:1/-1;aspect-ratio:auto;border-radius:14px;padding:16px; }.method-center strong { font-size:17px; }.method-node { padding:14px 9px; }.method-node h3 { font-size:14px; }.method-node p { font-size:12px; } }
+
+/* Marked geographic locations for Learning Lab examples */
+.learning-lab-location-map {width:100%;height:390px;border-radius:4px;background:#E7D8C4;z-index:0}
+.map-location-list {font-size:13px;color:#394B35;margin:12px 0 0;font-weight:600}
+@media(max-width:600px){.learning-lab-location-map{height:320px}}
+
+/* Offline-safe, self-contained Learning Lab map (no external map library). */
+.map-shell .ll-world-map-image{display:block;width:100%;height:auto;max-height:480px;object-fit:contain;background:#E7D8C4;border-radius:5px}
+.ll-practice-map{margin:22px 0 32px}
+
+/* Clickable project information on self-contained map */
+.ll-interactive-map {position:relative;width:100%;}
+.ll-interactive-map .ll-world-map-image {display:block;width:100%;height:auto;}
+.ll-map-hotspot {position:absolute;transform:translate(-50%,-50%);width:clamp(25px,3vw,39px);height:clamp(25px,3vw,39px);border:2px solid transparent;background:transparent;border-radius:50%;cursor:pointer;z-index:2;padding:0;}
+.ll-map-hotspot:hover,.ll-map-hotspot:focus-visible,.ll-map-hotspot[aria-expanded="true"] {outline:3px solid #394B35;outline-offset:2px;background:#FAF6ED55;}
+.ll-map-detail[hidden]{display:none!important;}
+.ll-map-detail {position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);width:min(370px,88%);padding:24px 22px;background:#FAF6ED;color:#3D3530;border:2px solid #394B35;border-radius:16px;box-shadow:0 12px 35px #263b3566;text-align:left;}
+.ll-map-detail h3{margin:0 32px 14px 0;color:#394B35;font-size:1.25rem;}
+.ll-map-detail p{margin:8px 0;line-height:1.5;}
+.ll-map-detail-close {position:absolute;right:12px;top:10px;border:0;background:transparent;color:#394B35;font-size:27px;line-height:1;cursor:pointer;padding:4px 8px;}
+.ll-map-detail-close:focus-visible{outline:2px solid #394B35;}
+.ll-map-hint {margin:10px 0 0;font-size:.9rem;color:#394B35;}
+
+/* Geographic map treatment: ocean-blue background and blue map interaction */
+.ll-interactive-map{background:#DCEEF8;border:1px solid #B9D5E5;border-radius:12px;overflow:hidden}
+.ll-map-hotspot:hover,.ll-map-hotspot:focus-visible,.ll-map-hotspot[aria-expanded="true"]{outline-color:#1565A9;background:#DCEEF855}
+.ll-map-hint{color:#28516B}
+
+/* Visible, keyboard-accessible map pins: clickable dot is the actual button. */
+.ll-interactive-map .ll-map-hotspot {
+  appearance:none!important;display:block!important;box-sizing:border-box!important;
+  width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;
+  padding:0!important;margin:0!important;border:5px solid #ffffff!important;
+  border-radius:50%!important;background:#1565A9!important;
+  box-shadow:0 0 0 2px #124f82,0 3px 8px #153b5866!important;
+  opacity:1!important;visibility:visible!important;cursor:pointer!important;
+  transform:translate(-50%,-50%)!important;z-index:4!important;
+  touch-action:manipulation;
+}
+.ll-interactive-map .ll-map-hotspot:hover,
+.ll-interactive-map .ll-map-hotspot:focus-visible,
+.ll-interactive-map .ll-map-hotspot[aria-expanded="true"] {
+  background:#F0A34C!important;box-shadow:0 0 0 5px #1565A955,0 3px 8px #153b5866!important;
+  outline:2px solid #153b58!important;outline-offset:3px!important;
+}
+@media(max-width:600px){.ll-interactive-map .ll-map-hotspot{width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;border-width:4px!important}}

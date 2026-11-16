@@ -19,14 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
       const detail = card && card.querySelector('.profile-detail');
       if (!detail) return;
       content.innerHTML = detail.innerHTML;
+      dialog.scrollTop = 0;
+      content.scrollTop = 0;
       dialog.showModal();
+      dialog.scrollTop = 0;
+      content.scrollTop = 0;
     });
   });
   close.addEventListener('click', function () { dialog.close(); });
   dialog.addEventListener('click', function (event) {
     if (event.target === dialog) dialog.close();
   });
-  dialog.addEventListener('close', function () { content.replaceChildren(); });
+  dialog.addEventListener('close', function () { dialog.scrollTop = 0; content.scrollTop = 0; content.replaceChildren(); });
 });
 
 // Compose email using the visitor's email app (static website, no server).
@@ -43,5 +47,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const body = 'Name: ' + name + '\\nEmail: ' + email + '\\n\\nMessage:\\n' + message;
     window.location.href = 'mailto:learninglabfuturemaking@gmail.com?subject=' +
       encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+});
+
+// Automatically archive dated events after their local calendar date.
+document.addEventListener('DOMContentLoaded', function () {
+  const heading = Array.from(document.querySelectorAll('h2, h3')).find(el => el.textContent.trim() === 'Past events');
+  if (!heading) return;
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Chicago', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  document.querySelectorAll('.event-listing[data-event-date]').forEach(function (event) {
+    const date = event.getAttribute('data-event-date');
+    if (date && date < today) {
+      heading.insertAdjacentElement('afterend', event);
+      event.classList.add('past-event');
+    }
   });
 });
